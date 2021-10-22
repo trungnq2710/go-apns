@@ -43,12 +43,12 @@ func NewClient(certificate *tls.Certificate) *Client {
 	}
 }
 
-func (c *Client) UseDevelopmentEnv() *Client {
+func (c *Client) Development() *Client {
 	c.endpoint = DefaultDevelopmentEndpoint
 	return c
 }
 
-func (c *Client) UseProductionEnv() *Client {
+func (c *Client) Production() *Client {
 	c.endpoint = DefaultProductionEndpoint
 	return c
 }

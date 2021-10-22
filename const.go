@@ -29,11 +29,3 @@ const (
 	PriorityLow  Priority = 5
 	PriorityHigh Priority = 10
 )
-
-const (
-	apnsReasonNotForTopic  = "DeviceTokenNotForTopic"
-	apnsReasonBadToken     = "BadDeviceToken"
-	apnsReasonExpiredToken = "ExpiredProviderToken"
-	apnsReasonInvalidToken = "InvalidProviderToken"
-	apnsReasonUnregistered = "Unregistered"
-)

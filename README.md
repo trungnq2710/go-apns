@@ -40,7 +40,7 @@ func Voip() {
 		Payload(payload)
 
 	// note: default development env
-	client := go_apns.NewClient(cert).UseProductionEnv()
+	client := go_apns.NewClient(cert).Production()
 
 	res, err := client.Push(notification)
 	if err != nil {

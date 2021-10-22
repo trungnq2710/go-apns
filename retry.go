@@ -2,3 +2,5 @@
 // Developer: trungnq2710 (trungnq2710@gmail.com)
 
 package go_apns
+
+// TODO impl retry
