@@ -1,0 +1,1 @@
+module "github.com/trunnq2710/go-apns"
