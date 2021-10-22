@@ -11,6 +11,7 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"errors"
+	"golang.org/x/crypto/pkcs12"
 	"io/ioutil"
 )
 
@@ -72,6 +73,22 @@ func CertificateFromPemFile(path string) (*tls.Certificate, error) {
 	return &cert, nil
 }
 
-// TODO load from p12 file
-func CertificateFromP12File(path string) {
+func CertificateFromP12File(path string) (*tls.Certificate, error) {
+	raw, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+
+	key, cert, err := pkcs12.Decode(raw, "")
+	if err != nil {
+		return nil, err
+	}
+
+	certificate := &tls.Certificate{
+		Certificate: [][]byte{cert.Raw},
+		PrivateKey:  key,
+		Leaf:        cert,
+	}
+
+	return certificate, nil
 }

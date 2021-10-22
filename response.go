@@ -15,7 +15,7 @@ type Response struct {
 	ReasonDescription string
 	StatusCode        int
 	ApnsID            string
-	NeedCleanUpToken  bool
+	CanCleanUpToken   bool
 }
 
 func parseResponse(resp *http.Response) (*Response, error) {
@@ -37,7 +37,7 @@ func parseResponse(resp *http.Response) (*Response, error) {
 
 	switch response.StatusCode {
 	case StatusCodeErrorDeviceToken:
-		response.NeedCleanUpToken = true
+		response.CanCleanUpToken = true
 	case StatusCodeBadRequest:
 		switch response.Reason {
 		case ReasonDeviceTokenNotForTopic,
@@ -45,7 +45,7 @@ func parseResponse(resp *http.Response) (*Response, error) {
 			ReasonExpiredProviderToken,
 			ReasonInvalidProviderToken,
 			ReasonUnregistered:
-			response.NeedCleanUpToken = true
+			response.CanCleanUpToken = true
 		}
 	}
 

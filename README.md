@@ -10,6 +10,8 @@
 - Support APNs HTTP/2 connection
 - Suport voip
 
+- Support read certificate from .pem and .p12 file
+
 ## Example voip
 
 ```go
