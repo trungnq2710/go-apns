@@ -4,7 +4,6 @@
 
 [TOC]
 
-
 ## Features
 
 - Support APNs HTTP/2 connection
@@ -12,7 +11,109 @@
 
 - Support read certificate from .pem and .p12 file
 
-## Example voip
+## Certificate
+
+- Read from .pem file
+
+```go
+import (
+	"crypto/tls"
+	go_apns "github.com/trungnq2710/go-apns"
+	"log"
+)
+
+func ReadFromPemFile()  {
+	var (
+		cert *tls.Certificate
+		err error
+	)
+
+	cert, err = go_apns.CertificateFromPemFile("cert.pem")
+	if err != nil {
+		log.Fatal(err)
+	}
+	
+	_ = cert
+}
+```
+
+- Read from .p12 file
+
+```go
+import (
+	"crypto/tls"
+	go_apns "github.com/trungnq2710/go-apns"
+	"log"
+)
+
+func ReadFromPemFile()  {
+	var (
+		cert *tls.Certificate
+		err error
+	)
+
+	cert, err := go_apns.CertificateFromP12File("cert.p12")
+	if err != nil {
+		log.Fatal(err)
+	}
+	
+	_ = cert
+}
+```
+
+## Payload
+
+- Create payload with builder
+
+## Notification
+
+- Create notification with builder
+
+## Client
+
+### Create client
+
+- Use product env
+
+```go
+go_apns.NewClient(cert).Production()
+```
+
+- Use development env (default is development env)
+
+```go
+go_apns.NewClient(cert).Development()
+```
+
+### Push action
+
+- Push
+
+```go
+client := go_apns.NewClient(cert).Production()
+
+res, err := client.Push(notification)
+if err != nil {
+	log.Fatal(err)
+}
+```
+
+- Push with context
+
+```go
+client := go_apns.NewClient(cert).Production()
+
+res, err := client.PushWithCtx(context.TODO(), notification)
+if err != nil {
+	log.Fatal(err)
+}
+```
+
+
+
+## Example
+
+### Example voip
 
 ```go
 import (
@@ -24,7 +125,7 @@ func Voip() {
 	// read cert
 	cert, err := go_apns.CertificateFromPemFile("cert.pem")
 	if err != nil {
-		log.Fatal.(err)
+		log.Fatal(err)
 	}
 
 	// init payload
@@ -44,7 +145,7 @@ func Voip() {
 
 	res, err := client.Push(notification)
 	if err != nil {
-		log.Fatal.(err)
+		log.Fatal(err)
 	}
 
 	log.Println(res)

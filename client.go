@@ -75,8 +75,15 @@ func (c *Client) PushWithCtx(ctx Context, n *Notification) (*Response, error) {
 	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 	if n.topic != "" {
 		topic := n.topic
-		if n.pushType == PushTypeVOIP {
+		switch n.pushType {
+		case PushTypeLocation:
+			topic = fmt.Sprintf("%s.%s", n.topic, "location-query")
+		case PushTypeVOIP:
 			topic = fmt.Sprintf("%s.%s", n.topic, PushTypeVOIP)
+		case PushTypeComplication:
+			topic = fmt.Sprintf("%s.%s", n.topic, PushTypeComplication)
+		case PushTypeFileProvider:
+			topic = fmt.Sprintf("%s.%s", n.topic, "pushkit.fileprovider")
 		}
 		req.Header.Set("apns-topic", topic)
 	}
