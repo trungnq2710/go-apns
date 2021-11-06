@@ -4,9 +4,9 @@
 package go_apns
 
 type ApsSound struct {
-	Critical int `json:"critical,omitempty"`
-	Name string `json:"name,omitempty"`
-	Volume int `json:"volume,omitempty"`
+	Critical int    `json:"critical,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Volume   int    `json:"volume,omitempty"`
 }
 
 func NewApsSound() *ApsSound {

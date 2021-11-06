@@ -9,7 +9,7 @@ type ApsAlert struct {
 	Body            string   `json:"body,omitempty"`
 	LaunchImage     string   `json:"launch-image,omitempty"`
 	TitleLocKey     string   `json:"title-loc-key,omitempty"`
-	TitleLocArgs    []string `json:"title_loc_args,omitempty"`
+	TitleLocArgs    []string `json:"title-loc-args,omitempty"`
 	SubtitleLocKey  string   `json:"subtitle-loc-key,omitempty"`
 	SubtitleLocArgs []string `json:"subtitle-loc-args,omitempty"`
 	LocKey          string   `json:"loc-key,omitempty"`
